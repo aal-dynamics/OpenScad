@@ -20,10 +20,12 @@ module cardBox_63x88(x = 100, xholes = 2, yholes = 1) {
 						cylinder(h = material, d = diameter);
 			}
 		}
-
-		// rotate([0, -90,0])
-		// 	translate([y * 0.5 + r, z * 0.5 + r, -material]) 
-		// 		cylinder(h = material, d = diameter);
+		translate([0, y * 0.5, z * 0.7])
+			rotate([0, 90, 0]) 
+				cylinder(h = material, d = d);
+		
+		translate([0, (y-d) /2, z-r]) 
+			cube (size = [material, d, r]);
 	}
 }
 
@@ -36,11 +38,11 @@ y = 97;
 	d = r * 2;
 	material = 1.2;
 	
-	color ("red"){
-		rotate([0, -90, 0]) {
-			translate([y * 0.5, z * 0.5 +r/2, -material]) 
-				cylinder(h = material, d = d);
-		}
-		// translate([0, y/2 - d/2, z -r])
-		// 	cube(size = [material, d, r]);
-	}
+	// color ("red"){
+	// 	translate([0, y * 0.5, z * 0.7])
+	// 		rotate([0, 90, 0]) 
+	// 			cylinder(h = material, d = d);
+		
+	// 	translate([0, (y-d) /2, z-r]) 
+	// 		cube (size = [material, d, r]);
+	// }

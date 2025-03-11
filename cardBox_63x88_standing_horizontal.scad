@@ -1,9 +1,19 @@
+module touchgapGap(width, height, material = 1.2) {
+	translate([0, 0, -height]) {
+		cube (size = [material, width, height]);
+	
+	translate([0, width /2, 0])
+		rotate([0, 90, 0]) 
+			cylinder(h = material, d = width);
+	}
+}
+
 module cardBox_63x88(x = 100, xholes = 2, yholes = 1) {
 	y = 70;
 	z = 97;
 
-	radius = z * 0.3;
-	diameter = radius * 2;
+	radius = y * 0.3;
+	diameter = y * 0.6;
 
 	material = 1.2;
 
@@ -20,20 +30,33 @@ module cardBox_63x88(x = 100, xholes = 2, yholes = 1) {
 						cylinder(h = material, d = diameter);
 			}
 		}
-		translate([0, y * 0.5, z * 0.7])
-			rotate([0, 90, 0]) 
-				cylinder(h = material, d = diameter);
-	
-		translate([0, (y - diameter) /2, z-radius]) 
-			cube (size = [material, diameter, radius]);
+		
+		translate([0, (y - diameter) /2, z])
+			touchgapGap(width = diameter, height = diameter * 0.75);
 
-		translate([x - material, y * 0.5, z * 0.7])
-			rotate([0, 90, 0]) 
-				cylinder(h = material, d = diameter);
+		// translate([x - material, y * 0.5, z * 0.7])
+		// 	rotate([0, 90, 0]) 
+		// 		cylinder(h = material, d = diameter);
 	
-		translate([x - material, (y-diameter) /2, z-radius]) 
-			cube (size = [material, diameter, radius]);
+		// translate([x - material, (y-diameter) /2, z-radius]) 
+		// 	cube (size = [material, diameter, radius]);
+		color("red")
+		translate([x - 1.6, (y - diameter) /2, z])
+			touchgapGap(width = diameter, height = diameter * 0.75, material = 2);
+
 	}
 }
 
 cardBox_63x88(x = 65, xholes = 0);
+
+// y = 70;
+// 	z = 97;
+
+// 	radius = y * 0.3;
+// 	diameter = y * 0.6;
+
+// 	material = 1.2;
+// color("red"){
+// 			translate([0, (y - diameter) /2, z])
+// 				touchgapGap(width = diameter, height = diameter * 0.75);
+// 		}

@@ -20,12 +20,17 @@ module hashedSquare(x, y, z = 1.2, space = 5) {
 		for (i = [0: 1: xCubes /2]) {
 			translate([xCubes * steps, -z + (i * steps *2 -( i* z)), 0])
 				rotate([0, 0, angle])
-					#cube([z, y / cos(angle) + z *2, z]);
+					cube([z, y / cos(angle) + z *2, z]);
 		}
-		for (i = [0: 1: xCubes]) {
+		for (i = [0: 1: yCubes]) {
 			translate([i * steps, -z, 0])
 				rotate([0, 0, -angle])
 					cube([z, y / cos(angle) + z *2, z]);
+		}
+		for (i = [0: 1: yCubes /2]) {
+			translate([0, -z + (i * steps *2 -( i* z)), 0])
+				rotate([0, 0, -angle])
+					#cube([z, y / cos(angle) + z *2, z]);
 		}
 
 		// cube([x, y, z]);

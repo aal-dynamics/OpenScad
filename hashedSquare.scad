@@ -1,6 +1,7 @@
 module hashedSquare(x, y, z = 1.2, space = 5) {
     angle = 30;
 	steps = space + z;
+
 	xCubes = round(x / steps) + 1;
 	yCubes = round(y / steps) + 1;
 	
@@ -15,6 +16,11 @@ module hashedSquare(x, y, z = 1.2, space = 5) {
 			translate([i * steps, -z, 0])
 				rotate([0, 0, angle])
 					cube([z, y / cos(angle) + z *2, z]);
+		}
+		for (i = [0: 1: xCubes /2]) {
+			translate([xCubes * steps, -z + (i * steps *2 -( i* z)), 0])
+				rotate([0, 0, angle])
+					#cube([z, y / cos(angle) + z *2, z]);
 		}
 		for (i = [0: 1: xCubes]) {
 			translate([i * steps, -z, 0])

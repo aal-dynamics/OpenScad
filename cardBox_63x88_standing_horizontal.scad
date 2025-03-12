@@ -32,17 +32,10 @@ module cardBox_63x88(x = 100, xholes = 2, yholes = 1) {
 		}
 		
 		translate([0, (y - diameter) /2, z])
-			touchgapGap(width = diameter, height = diameter * 0.75);
+			#touchgapGap(width = diameter, height = diameter * 0.75);
 
-		// translate([x - material, y * 0.5, z * 0.7])
-		// 	rotate([0, 90, 0]) 
-		// 		cylinder(h = material, d = diameter);
-	
-		// translate([x - material, (y-diameter) /2, z-radius]) 
-		// 	cube (size = [material, diameter, radius]);
-		color("red")
-		translate([x - 1.6, (y - diameter) /2, z])
-			touchgapGap(width = diameter, height = diameter * 0.75, material = 2);
+		translate([x -1.6, (y - diameter) /2, z])
+			#touchgapGap(width = diameter, height = diameter * 0.75, material = 2);
 
 	}
 }

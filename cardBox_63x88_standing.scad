@@ -30,13 +30,12 @@ module hashedSquare(x, y, z = 1.2, space = 5) {
     }
 }
 
-module cardBox_63x88(x = 100, touchGaps = [false, true, false, true]) {
-	y = 70;
-	z = 97;
+module cardBox_63x88(y = 100, touchGaps = [false, false, false, false]) {
+	x = 70;	
+	z = 95;
 
-	radius = y * 0.3;
-	diameter = y * 0.6;
-
+	xDiameter = x * 0.6;
+	yDiameter = y * 0.6;
 	material = 1.2;
 
 	difference() {
@@ -45,13 +44,25 @@ module cardBox_63x88(x = 100, touchGaps = [false, true, false, true]) {
 		translate([material, material, material])
 			cube(size = [x - (material * 2), y - (material * 2), z - material]);
 		
-		translate([0, (y - diameter) /2, z])
-			#touchGap(width = diameter, height = diameter * 0.75);
+		if (touchGaps[0]) //front
+			translate([xDiameter + (x - xDiameter) /2, 0, z])
+				rotate([0,0,90])
+					touchGap(width = xDiameter, height = xDiameter * 0.75);
 
-		translate([x -1.6, (y - diameter) /2, z])
-			#touchGap(width = diameter, height = diameter * 0.75, material = 2);
+		if (touchGaps[1]) //left
+			translate([0, (y - yDiameter) /2, z])
+				touchGap(width = yDiameter, height = yDiameter * 0.75);
+
+		if (touchGaps[2]) //back
+			translate([xDiameter + (x - xDiameter) /2, y - material * 1.6, z])
+				rotate([0,0,90])
+					touchGap(width = xDiameter, height = xDiameter * 0.75, material = 2);
+
+		if (touchGaps[3]) //right
+			translate([x -1.6, (y - yDiameter) /2, z])
+				touchGap(width = yDiameter, height = yDiameter * 0.75, material = 2);
 
 	}
 }
 
-cardBox_63x88(x = 65);
+cardBox_63x88(y = 65, touchGaps = [true, false, true, false]);

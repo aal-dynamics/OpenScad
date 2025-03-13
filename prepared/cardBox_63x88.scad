@@ -1,5 +1,5 @@
-include <touchGap.scad>;
-include <hashedSquare.scad>;
+include <../prepared/touchGap.scad>;
+include <../prepared/hashedSquare.scad>;
 
 module cardBox_63x88(y, material = 1.2, touchGaps = [false, false, false, false], eco) {
 	x = 70 + (material *2);
@@ -53,4 +53,4 @@ module cardBox_63x88(y, material = 1.2, touchGaps = [false, false, false, false]
 	}
 }
 
-cardBox_63x88(y = 65, touchGaps = [true, false, true, false], eco = false);
+//cardBox_63x88(y = 65, touchGaps = [true, false, true, false], eco = true);

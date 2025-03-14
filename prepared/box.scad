@@ -1,7 +1,7 @@
 include <touchGap.scad>;
 include <hashedSquare.scad>;
 
-module box(x = 0.0, y = 0.0, z = 0.0, material = 1.2, touchGaps = [false, false, false, false], eco = [false, false, false, false, true]) {
+module box(x = 0.0, y = 0.0, z = 0.0, material = 1.2, touchGaps = [false, false, false, false], eco = [false, false, false, false, true], hashSpace = 7) {
 	echo("######### BOX size X = ", x, ", Y = ", y, ", Z = ", z, " #########");
 
 	tempX = x * 0.6 ;
@@ -13,8 +13,13 @@ module box(x = 0.0, y = 0.0, z = 0.0, material = 1.2, touchGaps = [false, false,
 	difference() {
 		cube(size = [x, y, z]);
 		
-		translate([material, material, material])
-			cube(size = [x - (material * 2), y - (material * 2), z - material]);
+		translate([material, material, material]) {
+			//cube(size = [x - (material * 2), y - (material * 2), z - material]);
+			if (z > material)
+				cube(size = [x - (material * 2), y - (material * 2), z]);
+			if (z <= material)
+				cube(size = [x - (material * 2), y - (material * 2), z - material]);
+		}
 		
 		if (touchGaps[0]) //front
 			translate([xDiameter + (x - xDiameter) /2, -material, z  + 0.1])
@@ -51,30 +56,30 @@ module box(x = 0.0, y = 0.0, z = 0.0, material = 1.2, touchGaps = [false, false,
 			if (eco[0])
 				translate([ecoDistance, material *2, ecoDistance])
 					rotate([90, 0, 0])
-						hashedSquare(x = ecoX, y = frontY, z = material);
+						hashedSquare(x = ecoX, y = frontY, z = material, space = hashSpace);
 
 			//left
 			if (eco[1])
 				translate([0, ecoDistance, ecoDistance])
 					rotate([90, 0, 90])
-						hashedSquare(x = ecoY, y = leftY, z = material);
+						hashedSquare(x = ecoY, y = leftY, z = material, space = hashSpace);
 
 			//back
 			if (eco[2])
 				translate([ecoDistance, y + material, ecoDistance])
 					rotate([90, 0, 0])
-						hashedSquare(x = ecoX, y = backY, z = material);
+						hashedSquare(x = ecoX, y = backY, z = material, space = hashSpace);
 
 			//right
 			if (eco[3])
 				translate([x - material *2, ecoDistance, ecoDistance])
 					rotate([90, 0, 90])
-						hashedSquare(x = ecoY, y = rightY, z = material);
+						hashedSquare(x = ecoY, y = rightY, z = material, space = hashSpace);
 
 			//bottom
 			if (eco[4])
 				translate([ecoDistance, ecoDistance, -0.1])
-					hashedSquare(x = x - ecoDistance * 2, y = y - ecoDistance * 2, z = material);
+					hashedSquare(x = x - ecoDistance * 2, y = y - ecoDistance * 2, z = material, space = hashSpace);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 include <touchGap.scad>;
 include <hashedSquare.scad>;
 
-module box(x = 0.0, y = 0.0, z = 0.0, material = 1.2, touchGaps = [false, false, false, false], eco = [true, true, true, true, true]) {
+module box(x = 0.0, y = 0.0, z = 0.0, material = 1.2, touchGaps = [false, false, false, false], eco = [false, false, false, false, true]) {
 	echo("######### BOX size X = ", x, ", Y = ", y, ", Z = ", z, " #########");
 
 	tempX = x * 0.6 ;

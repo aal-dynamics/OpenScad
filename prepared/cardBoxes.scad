@@ -2,7 +2,7 @@ include <touchGap.scad>;
 include <hashedSquare.scad>;
 include <box.scad>;
 
-module cardBox_63x88(y = 0.0, material = 1.2, touchGaps = [false, false, false, false], eco = [true, true, true, true, true]) {
+module cardBox_63x88(y = 0.0, material = 1.2, touchGaps = [false, false, false, false], eco = [false, false, false, false, true]) {
 	x = 73.0;
 	z = 95.0;
 

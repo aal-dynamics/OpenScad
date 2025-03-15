@@ -6,7 +6,6 @@ module lid_add(x = 1.6, y = 1.2, z = 5, side = true, material = 1.2) {
 
 	if (side) {
 		translate([0, 0, z - material])// -x / 2]) 
-			//#sphere(r = material, $fn = 10);
 			rotate([90,90,90])
 				cylinder(h = x, d = material, $fn = 10);
 		translate([0, y, z - material]) 
@@ -28,11 +27,19 @@ module boxWithFrame(x = 0.0, y = 0.0, z = 0.0, material = 1.2, eco = [false, fal
 
 	//box(x = x, y = y, z = zWithoutLid, material = material, eco = eco, hashSpace = hashSpace);
 	box(x = x, y = y, z = z, material = material, eco = eco, hashSpace = hashSpace);
-	translate([0, 0, z - material *2])
+	translate([0, 0, z - material *2]){
 		cube([x, material *2, material]);
+		translate([0, 0, -material])
+			rotate([-36, 0, 0])
+				cube([x, material, material *2]);
+	}
 	
-	translate([0, y -material *2, z - material *2])
+	translate([0, y -material *2, z - material *2]){
 		cube([x, material *2, material]);
+		translate ([0, material + 0.2, -material - 0.7])
+			rotate([36, 0, 0])
+				cube([x, material , material*2]);
+	}
 		
 	translate([0, 0, z - material * 2]){
 		cube([material *2, y, material]);
@@ -41,11 +48,11 @@ module boxWithFrame(x = 0.0, y = 0.0, z = 0.0, material = 1.2, eco = [false, fal
 				cube([material, y, material * 2]);
 	}
 	
-	translate([x - material *2, 0, z - material *2]){
+	translate([x - material * 2, 0, z - material * 2]){
 		cube([material *2, y, material]);
-		translate([material, 0, - material *0.3])
-		 	rotate([0, -36, 0])
-				cube([material, y, material * 2]);
+		translate([material + 0.2, 0, -material * 1.6])
+		  	rotate([0, -36, 0])
+		 		cube([material, y, material * 2]);
 	}
 }
 
